@@ -144,13 +144,7 @@
     width: 100%;
     max-width: 1280px;
     margin-inline: auto;
-    padding-inline: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .page-container {
-      padding-inline: 2rem;
-    }
+    padding-inline: clamp(1rem, 4vw, 2rem);
   }
 
   .skip-link {
@@ -175,6 +169,7 @@
     z-index: 20;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    isolation: isolate;
   }
 
   .header-inner {
@@ -210,21 +205,31 @@
   .theme-control {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.4rem;
     color: var(--foreground-secondary);
     position: relative;
   }
 
   .theme-control select {
     min-height: 2.75rem;
-    max-width: 6rem;
-    padding: 0.5rem 0.25rem;
+    width: 5.9rem;
+    padding: 0.5rem 1.6rem 0.5rem 0.45rem;
     color: var(--foreground);
     font: inherit;
     font-size: 0.8125rem;
     cursor: pointer;
     background: var(--background);
-    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.6rem;
+    appearance: none;
+  }
+  .theme-control select:hover {
+    background: var(--surface-subtle);
+  }
+  .theme-chevron {
+    position: absolute;
+    right: 0.45rem;
+    pointer-events: none;
   }
 
   .mobile-nav summary {
@@ -232,7 +237,7 @@
     align-items: center;
     gap: 0.5rem;
     min-height: 2.75rem;
-    padding-inline: 0.5rem;
+    padding-inline: 0.65rem;
     cursor: pointer;
     font-size: 0.8125rem;
     font-weight: 500;
@@ -267,7 +272,7 @@
     inset: 100% 0 auto;
     background: var(--background);
     border-bottom: 1px solid var(--border);
-    padding: 0.75rem 1rem 1rem;
+    padding: 0.75rem clamp(1rem, 4vw, 2rem) 1rem;
     display: grid;
   }
 
@@ -281,7 +286,7 @@
   }
 
   .hero {
-    padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 7vw, 6rem);
+    padding-block: clamp(3.25rem, 7vw, 6.75rem) clamp(3.25rem, 6vw, 5.25rem);
   }
 
   .availability {
@@ -303,7 +308,7 @@
   .hero-name {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: clamp(2.4rem, 6.5vw, 4.75rem);
+    font-size: clamp(2.5rem, 6.2vw, 4.75rem);
     letter-spacing: -0.055em;
     line-height: 1.14;
   }
@@ -370,7 +375,7 @@
   }
 
   .homepage-section {
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: clamp(3.5rem, 7vw, 5.75rem);
   }
   .section-heading {
     display: flex;
@@ -398,15 +403,15 @@
   }
   .work-note {
     display: grid;
-    gap: 1.25rem;
-    padding: clamp(1.5rem, 4vw, 3rem);
+    gap: 1.75rem;
+    padding: clamp(1.5rem, 3.5vw, 2.75rem);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     background: var(--surface);
   }
   .work-note h3 {
-    max-width: 15ch;
-    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    max-width: 19ch;
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
     font-weight: 600;
     letter-spacing: -0.045em;
     line-height: 1.25;
@@ -415,6 +420,33 @@
     max-width: 48ch;
     color: var(--foreground-secondary);
     font-size: 0.9375rem;
+  }
+  .work-status {
+    margin-bottom: 0.65rem;
+    color: var(--accent) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .planned-projects {
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .planned-projects li {
+    display: grid;
+    gap: 0.1rem;
+    padding-block: 0.65rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .planned-projects li span:first-child {
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .planned-projects li span:last-child {
+    color: var(--foreground-muted);
+    font-size: 0.8125rem;
   }
   .work-note .text-link {
     margin-top: 0.75rem;
@@ -455,7 +487,7 @@
   }
   .experience-list li {
     position: relative;
-    padding-bottom: 2rem;
+    padding-bottom: clamp(2rem, 5vw, 3rem);
   }
   .experience-list li:last-child {
     padding-bottom: 0;
@@ -513,7 +545,7 @@
   }
 
   .contact-section {
-    margin-block: 0.5rem 2rem;
+    margin-block: 0 2rem;
     padding: clamp(1.5rem, 4vw, 2.5rem);
     border: 1px solid var(--border);
     border-radius: 1.5rem;
@@ -589,6 +621,21 @@
     .text-link:hover .arrow {
       transform: translateX(3px);
     }
+    .planned-projects li {
+      transition: padding-inline 180ms ease;
+    }
+    .planned-projects li:hover {
+      padding-inline: 0.35rem;
+    }
+  }
+
+  .button-primary:active {
+    transform: translateY(1px);
+  }
+  .desktop-nav a:active,
+  .mobile-nav nav a:active,
+  .text-link:active {
+    color: var(--accent);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -610,9 +657,6 @@
   }
 
   @media (min-width: 40rem) {
-    .mobile-nav nav {
-      padding-inline: 2rem;
-    }
     .experience-entry {
       grid-template-columns: minmax(0, 1fr) auto;
       column-gap: 2rem;
@@ -626,9 +670,9 @@
       grid-column: 1 / -1;
     }
     .work-note {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-      gap: 3rem;
-      align-items: center;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: start;
     }
     .project-list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -686,6 +730,43 @@
     }
     .experience-list li::before {
       left: -2.3rem;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .header-inner {
+      gap: 0.25rem;
+    }
+    .theme-control {
+      gap: 0.2rem;
+    }
+    .theme-control select {
+      width: 5.2rem;
+      padding-left: 0.25rem;
+    }
+    .mobile-nav summary {
+      gap: 0.35rem;
+      padding-inline: 0.35rem;
+    }
+    .hero-description {
+      line-height: 1.65;
+    }
+    .hero-actions {
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    .button-primary {
+      flex: 1 1 100%;
+    }
+    .hero-actions .text-link {
+      padding-inline: 0.25rem;
+    }
+    .section-heading {
+      gap: 0.6rem;
+    }
+    .section-action {
+      width: 100%;
+      min-height: 2.5rem;
     }
   }
 }

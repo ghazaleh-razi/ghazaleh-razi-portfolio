@@ -47,11 +47,14 @@ export function ThemeControl() {
         applyTheme(value);
         try { localStorage.setItem(storageKey, value); } catch { /* Selection still works without storage. */ }
         window.dispatchEvent(new Event(themeEvent));
-      }}>
+      }} aria-label="Color theme">
         <option value="system">System</option>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </select>
+      <svg className="theme-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="m3.5 5.5 3.5 3 3.5-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     </label>
   );
 }
