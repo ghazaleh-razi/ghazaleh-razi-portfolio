@@ -1,4 +1,4 @@
-import { publishedProjects } from "../../content/projects";
+import { plannedProjects, publishedProjects } from "../../content/projects";
 import { Arrow } from "../ui/arrow";
 import { SectionHeading } from "../ui/section-heading";
 
@@ -21,9 +21,20 @@ export function Work() {
         </div>
       ) : (
         <div className="work-note">
-          <h3>Case studies in preparation.</h3>
-          <div>
-            <p>The projects for this portfolio are planned. Completed work will be published here with real implementation details and supporting material.</p>
+          <div className="work-note-intro">
+            <p className="work-status">Planned portfolio work</p>
+            <h3>Engineering case studies, published when they&apos;re real.</h3>
+          </div>
+          <div className="work-note-details">
+            <p>Three Angular and TypeScript projects are planned. Each will be published only after it has a real implementation and credible supporting material.</p>
+            <ol className="planned-projects" aria-label="Planned case studies">
+              {plannedProjects.map((project) => (
+                <li key={project.name}>
+                  <span>{project.name}</span>
+                  <span>{project.direction}</span>
+                </li>
+              ))}
+            </ol>
             <a className="text-link accent-link" href="#experience">Explore my experience <Arrow /></a>
           </div>
         </div>
