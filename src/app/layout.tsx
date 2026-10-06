@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 // Runs before body paint. Missing/invalid/unavailable storage leaves CSS in System mode.
-// Future controls can save "light", "dark", or "system" under this stable key.
+// The theme control uses the same key; System remains CSS-driven, including OS changes.
 const themeScript = `try{var t=localStorage.getItem("portfolio-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>
+      <body id="top">
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
