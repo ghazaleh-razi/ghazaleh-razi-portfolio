@@ -14,12 +14,12 @@ export function Header() {
           {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
         </nav>
         <div className="header-actions">
-          <a className="resume-link" href={resumeHref}>Résumé <Arrow diagonal /></a>
+          <a className="resume-link" href={resumeHref} target="_blank" rel="noreferrer">Résumé <Arrow diagonal /></a>
           <ThemeControl />
         </div>
         <MobileNav>
           {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
-          <a href={resumeHref}>View résumé <Arrow diagonal /></a>
+          <a href={resumeHref} target="_blank" rel="noreferrer">View résumé <Arrow diagonal /></a>
         </MobileNav>
       </div>
     </header>
