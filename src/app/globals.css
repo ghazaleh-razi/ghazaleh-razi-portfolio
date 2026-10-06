@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-focus: var(--accent);
+  --font-sans: var(--font-inter), Arial, sans-serif;
+  --font-heading: var(--font-manrope), Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: #f7f7f5;
+    --surface: #ffffff;
+    --foreground: #111315;
+    --foreground-secondary: #62686d;
+    --border: #e2e5e3;
+    --accent: #137a63;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --background: #0b1012;
+      --surface: #111719;
+      --foreground: #f2f5f3;
+      --foreground-secondary: #a4aeaa;
+      --border: #263033;
+      --accent: #48d7ac;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --background: #0b1012;
+    --surface: #111719;
+    --foreground: #f2f5f3;
+    --foreground-secondary: #a4aeaa;
+    --border: #263033;
+    --accent: #48d7ac;
+  }
+
+  body {
+    min-height: 100svh;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .page-container {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .page-container {
+      padding-inline: 2rem;
+    }
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 50;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    color: var(--foreground);
+    text-decoration: underline;
+    transform: translateY(calc(-100% - 2rem));
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+}
