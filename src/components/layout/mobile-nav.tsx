@@ -9,6 +9,14 @@ export function MobileNav({ children }: { children: ReactNode }) {
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
+    const header = detailsRef.current?.closest("header");
+    const headerObserver = new ResizeObserver(() => {
+      if (header) {
+        document.documentElement.style.setProperty("--header-height", `${header.getBoundingClientRect().height}px`);
+      }
+    });
+    if (header) headerObserver.observe(header);
+
     function dismiss(event: PointerEvent) {
       const details = detailsRef.current;
       if (details?.open && event.target instanceof Node && !details.contains(event.target)) {
@@ -30,6 +38,8 @@ export function MobileNav({ children }: { children: ReactNode }) {
     document.addEventListener("pointerdown", dismiss);
     desktop.addEventListener("change", handleResize);
     return () => {
+      headerObserver.disconnect();
+      document.documentElement.style.removeProperty("--header-height");
       document.removeEventListener("pointerdown", dismiss);
       desktop.removeEventListener("change", handleResize);
     };
@@ -56,13 +66,23 @@ export function MobileNav({ children }: { children: ReactNode }) {
         Menu
         <span className="menu-symbol" aria-hidden="true"><span /><span /></span>
       </summary>
-      <nav id="mobile-navigation" aria-label="Mobile" onClick={(event) => {
+      <nav id="mobile-navigation" aria-label="Mobile" onFocus={(event) => {
+        const target = event.target;
+        // Native focus scrolling can leave a link clipped in a short disclosure.
+        requestAnimationFrame(() => {
+          if (target instanceof HTMLElement && target === document.activeElement && detailsRef.current?.open) {
+            target.scrollIntoView({ block: "nearest", inline: "nearest" });
+          }
+        });
+      }} onClick={(event) => {
         const link = event.target instanceof Element ? event.target.closest("a") : null;
         if (!link) return;
         if (detailsRef.current) detailsRef.current.open = false;
         const href = link.getAttribute("href");
         if (href?.startsWith("#")) {
           document.getElementById(href.slice(1))?.focus({ preventScroll: true });
+        } else {
+          triggerRef.current?.focus({ preventScroll: true });
         }
       }}>{children}</nav>
     </details>
