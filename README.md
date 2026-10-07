@@ -113,12 +113,35 @@ The presentation supports featured and supporting entries without a CMS or
 separate generic card framework.
 
 Owner-verified email, LinkedIn, and GitHub values belong in `src/content/site.ts`.
-They are currently unavailable in the supplied sources, so no fabricated links
-or inactive buttons are rendered. Once supplied, the contact section shows a
-copyable email, profile links, and the Get in touch action. External links open
-in the same tab. The résumé links target the approved stable PDF path; the actual
-PDF is deferred and those links will return 404 until it is provided.
+The contact section renders the verified email, LinkedIn, and GitHub links.
+Profile links open in a new tab with `noreferrer`. The résumé is available at
+`/resume/Ghazaleh-Razi-Frontend-Engineer-Resume.pdf`. The hero uses the supplied
+1145×1374 portrait with descriptive alt text and reserved intrinsic dimensions.
+Real project case studies remain deferred until after the initial launch.
 
-There is no production portrait in the repository. The hero uses a deliberate
-text composition rather than fabricated media. Final portrait, résumé, project
-case studies, OG assets, deployment, and production acceptance QA remain later work.
+## SEO and social sharing
+
+The fixed production origin is `https://ghazaleh-razi.com`. Homepage metadata and
+the Person/WebSite/ProfilePage graph live in `src/app/page.tsx`; root metadata
+contains only shared site identity and the metadata base. The 404 has its own
+title, Next.js's `noindex`, and no homepage canonical or profile graph.
+`robots.ts` and `sitemap.ts` are explicitly static; the sitemap lists only `/`.
+Icons use Next.js file conventions without duplicate manual declarations.
+
+The checked-in 1200×630 PNG is shared by Open Graph and Twitter large cards. It
+uses the site's dark palette and a deterministic text composition, with the
+Geist font bundled in Next.js (the renderer does not support the site's WOFF2
+fonts). It is never loaded as a homepage image. Regenerate it and the Apple touch
+icon without installing packages:
+
+```sh
+node scripts/generate-social-image.mjs
+npm run build
+node scripts/verify-static-seo.mjs
+```
+
+The optional generator uses only React and Next.js already installed by the
+lockfile; normal builds use the checked-in images. The verification script
+checks the actual exported metadata, graph, crawling files, 404, links and assets.
+See [the Phase 7 report](docs/phase-7-seo.md) for audit findings, validation,
+verified production URLs and the post-deployment Search Console checklist.

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { site } from "../content/site";
 import "./globals.css";
 
 const inter = localFont({
@@ -17,11 +18,8 @@ const manrope = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ghazaleh-razi.com"),
-  title: "Ghazaleh Razi — Frontend Engineer | Angular & TypeScript",
-  description:
-    "Frontend Engineer specializing in Angular and TypeScript, building scalable, maintainable web applications with a focus on frontend architecture and user experience.",
-  alternates: { canonical: "/" },
+  metadataBase: new URL(site.origin),
+  applicationName: site.name,
 };
 
 // Runs before body paint. Missing/invalid/unavailable storage leaves CSS in System mode.
