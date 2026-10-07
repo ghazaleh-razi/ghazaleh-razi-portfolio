@@ -27,10 +27,13 @@ end-of-life and Node 22 is in Maintenance LTS. The lockfile records dependencies
 ## Static hosting
 
 The production build creates `out/` using `output: "export"`; no separate export
-command or Node server is needed. Publish the contents of `out/` to GitHub Pages.
-The export includes `.nojekyll` and `CNAME` for `ghazaleh-razi.com`.
-Root-relative assets assume this custom domain. A repository subpath would
-require `basePath` configuration. DNS and publishing are deferred.
+command or Node server is needed. The production workflow validates the site,
+uploads only `out/`, and deploys it through GitHub's Pages artifact flow after a
+push to `main` or a manual dispatch. The export includes `.nojekyll` so GitHub
+Pages serves Next.js's `_next` directory. Root-relative assets intentionally
+target the planned custom-domain root; no repository-name `basePath` is set.
+Custom-domain, DNS, and HTTPS setup are deferred to Phase 11. See
+[the deployment guide](docs/deployment.md) for setup and verification.
 
 ## Generated Next.js types
 

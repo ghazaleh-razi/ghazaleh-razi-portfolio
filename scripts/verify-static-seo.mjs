@@ -203,11 +203,11 @@ const resume = await readFile(
   "out/resume/Ghazaleh-Razi-Frontend-Engineer-Resume.pdf",
 );
 assert.equal(resume.subarray(0, 5).toString(), "%PDF-");
-assert.equal((await readFile("out/CNAME", "utf8")).trim(), "ghazaleh-razi.com");
 await access("out/.nojekyll");
+await assert.rejects(access("out/CNAME"), { code: "ENOENT" });
 
 console.log(
-  "PASS: exported title, description, canonical, robots, OG/Twitter, JSON-LD graph, crawlable content, anchors, identity links, portrait, sitemap, 404, icons, local assets, résumé and domain.",
+  "PASS: exported title, description, canonical, robots, OG/Twitter, JSON-LD graph, crawlable content, anchors, identity links, portrait, sitemap, 404, icons, local assets, résumé, .nojekyll and deferred CNAME.",
 );
 console.log(
   `Social preview: 1200×630 PNG, ${png.length.toLocaleString("en-US")} bytes.`,
