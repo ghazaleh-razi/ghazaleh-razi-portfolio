@@ -1,3 +1,15 @@
+// Fixed public origin; never derive canonical URLs from a preview host or request.
+export const site = {
+  origin: "https://ghazaleh-razi.com",
+  name: "Ghazaleh Razi",
+  title: "Ghazaleh Razi — Frontend Engineer | Angular & TypeScript",
+  description:
+    "Frontend Engineer specializing in Angular and TypeScript, building scalable, maintainable web applications with a focus on frontend architecture and user experience.",
+  portrait: "/images/ghazaleh-razi-portrait.png",
+  socialImage: "/images/og/ghazaleh-razi.png",
+  socialImageAlt: "Ghazaleh Razi — Frontend Engineer — Angular & TypeScript",
+} as const;
+
 export const resumeHref = "/resume/Ghazaleh-Razi-Frontend-Engineer-Resume.pdf";
 
 export const navigation = [

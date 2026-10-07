@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { resumeHref } from "../../content/site";
+import { resumeHref, site } from "../../content/site";
 import { Arrow } from "../ui/arrow";
 
 export function Hero() {
@@ -21,7 +21,7 @@ export function Hero() {
       </div>
       <div className="hero-portrait">
         <Image
-          src="/images/ghazaleh-razi-portrait.png"
+          src={site.portrait}
           alt="Portrait of Ghazaleh Razi"
           width={1145}
           height={1374}
