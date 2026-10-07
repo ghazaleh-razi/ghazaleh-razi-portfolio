@@ -7,13 +7,9 @@ export const navigation = [
   { href: "#contact", label: "Contact" },
 ] as const;
 
-// Publish only owner-verified contact values. Missing values never become links.
-export const contact: {
-  email: string | null;
-  linkedin: string | null;
-  github: string | null;
-} = {
-  email: null,
-  linkedin: null,
-  github: null,
-};
+// Publish only owner-verified contact values.
+export const contact = {
+  email: "ghazale.razi@gmail.com",
+  linkedin: "https://www.linkedin.com/in/ghazaleh-razi",
+  github: "https://github.com/ghazaleh-razi",
+} as const;
