@@ -10,16 +10,16 @@ export function Hero() {
           Available for opportunities
         </p>
         <p className="hero-name">Ghazaleh Razi</p>
-        <h1 id="hero-heading">Frontend Engineer</h1>
-        <p className="hero-specialization">Angular &amp; TypeScript</p>
+        <h1 id="hero-heading">Angular Frontend Engineer</h1>
+        <p className="hero-specialization">TypeScript · Enterprise Web Applications</p>
         <p className="hero-description">
-          I build scalable frontend systems for complex web applications, with a
-          focus on architecture, maintainability, and thoughtful user
-          experiences.
+          I build maintainable Angular and TypeScript interfaces for complex
+          business applications, focusing on reusable components, reliable API
+          integrations, and intuitive user experiences.
         </p>
         <div className="hero-actions">
-          <a className="button-primary" href="#work">
-            View selected work <Arrow />
+          <a className="button-primary" href="#contact">
+            Discuss a Project <Arrow />
           </a>
           <a
             className="text-link"

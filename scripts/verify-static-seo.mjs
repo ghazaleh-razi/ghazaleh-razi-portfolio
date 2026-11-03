@@ -3,9 +3,10 @@ import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 
 const origin = "https://ghazaleh-razi.com";
-const title = "Ghazaleh Razi — Frontend Engineer | Angular & TypeScript";
+const title =
+  "Ghazaleh Razi | Angular Frontend Engineer & TypeScript Developer";
 const description =
-  "Frontend Engineer specializing in Angular and TypeScript, building scalable, maintainable web applications with a focus on frontend architecture and user experience.";
+  "Angular & TypeScript Frontend Engineer building enterprise web applications, complex business workflows, and reusable UI components. Open to collaboration.";
 const imageUrl = `${origin}/images/og/ghazaleh-razi.png`;
 const decode = (value) =>
   value
@@ -68,7 +69,24 @@ assert.doesNotMatch(
   /localhost|127\.0\.0\.1|github\.io|noindex|nofollow/,
 );
 assert.equal((visible.match(/<h1\b/g) ?? []).length, 1);
-assert.match(visible, /<h1[^>]*>Frontend Engineer<\/h1>/);
+assert.match(visible, /<h1[^>]*>Angular Frontend Engineer<\/h1>/);
+const hero = visible.match(
+  /<section\b[^>]*aria-labelledby="hero-heading"[^>]*>([\s\S]*?)<\/section>/,
+)?.[1];
+assert.ok(hero, "Server-rendered Hero");
+assert.match(hero, /TypeScript · Enterprise Web Applications/);
+assert.ok(
+  hero.includes(
+    "I build maintainable Angular and TypeScript interfaces for complex business applications, focusing on reusable components, reliable API integrations, and intuitive user experiences.",
+  ),
+  "Crawlable Hero description",
+);
+const primaryCtas = [...hero.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)].filter(
+  ([, attrs]) => attributes(attrs).class === "button-primary",
+);
+assert.equal(primaryCtas.length, 1, "One primary Hero CTA");
+assert.equal(attributes(primaryCtas[0][1]).href, "#contact");
+assert.match(primaryCtas[0][2], /^Discuss a Project\s*<svg/);
 for (const text of [
   "Ghazaleh Razi",
   "Angular",
@@ -139,6 +157,7 @@ const [person, website, profile] = data["@graph"];
 assert.equal(person.name, "Ghazaleh Razi");
 assert.equal(person.url, `${origin}/`);
 assert.equal(person.jobTitle, "Frontend Engineer");
+assert.equal(person.description, description);
 assert.equal(person.image, `${origin}/images/ghazaleh-razi-portrait.png`);
 assert.deepEqual(person.sameAs, [
   "https://www.linkedin.com/in/ghazaleh-razi",
@@ -147,6 +166,8 @@ assert.deepEqual(person.sameAs, [
 assert.equal(website.publisher["@id"], person["@id"]);
 assert.equal(profile.mainEntity["@id"], person["@id"]);
 assert.equal(profile.isPartOf["@id"], website["@id"]);
+assert.equal(profile.name, title);
+assert.equal(profile.description, description);
 assert.doesNotMatch(
   JSON.stringify(data),
   /"(?:telephone|address|award|review|aggregateRating|worksFor|alumniOf|dateModified|dateCreated)"/,
