@@ -128,7 +128,11 @@ The fixed production origin is `https://ghazaleh-razi.com`. Homepage metadata an
 the Person/WebSite/ProfilePage graph live in `src/app/page.tsx`; root metadata
 contains only shared site identity and the metadata base. The 404 has its own
 title, Next.js's `noindex`, and no homepage canonical or profile graph.
-`robots.ts` and `sitemap.ts` are explicitly static; the sitemap lists only `/`.
+`robots.ts` and `sitemap.ts` are explicitly static; the sitemap lists `/` and
+`/services/angular-development/`. The services route has its own metadata and
+a minimal WebPage schema referencing the homepage identities. Its copy lives
+in `src/content/services.ts`; see [the SEO-1.3 report](docs/seo-1-3-angular-development.md)
+for local validation and release limitations.
 Icons use Next.js file conventions without duplicate manual declarations.
 
 The checked-in 1200×630 PNG is shared by Open Graph and Twitter large cards. It

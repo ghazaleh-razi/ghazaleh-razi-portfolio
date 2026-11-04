@@ -2,9 +2,9 @@
 export const site = {
   origin: "https://ghazaleh-razi.com",
   name: "Ghazaleh Razi",
-  title: "Ghazaleh Razi — Frontend Engineer | Angular & TypeScript",
+  title: "Ghazaleh Razi | Angular Frontend Engineer & TypeScript Developer",
   description:
-    "Frontend Engineer specializing in Angular and TypeScript, building scalable, maintainable web applications with a focus on frontend architecture and user experience.",
+    "Angular & TypeScript Frontend Engineer building enterprise web applications, complex business workflows, and reusable UI components. Open to collaboration.",
   portrait: "/images/ghazaleh-razi-portrait.png",
   socialImage: "/images/og/ghazaleh-razi.png",
   socialImageAlt: "Ghazaleh Razi — Frontend Engineer — Angular & TypeScript",

@@ -621,6 +621,59 @@
     font-size: inherit;
   }
 
+  .services-hero {
+    padding-block: clamp(3.25rem, 7vw, 6.75rem) clamp(3.5rem, 7vw, 5.75rem);
+  }
+  .services-hero h1 {
+    max-width: 25ch;
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .services-hero .hero-description {
+    max-width: 46rem;
+  }
+  .services-list li {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .services-list h3,
+  .services-steps h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .services-list p,
+  .services-steps p {
+    max-width: 67ch;
+    color: var(--foreground-secondary);
+    font-size: 0.9375rem;
+    text-wrap: pretty;
+  }
+  .services-inline-heading {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  .services-steps {
+    max-width: 47rem;
+    list-style: decimal;
+    padding-left: 1.5rem;
+  }
+  .services-steps li {
+    padding-left: 0.5rem;
+  }
+  .services-steps li + li {
+    margin-top: 1.5rem;
+  }
+  .services-steps li::marker {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
   @media (hover: hover) {
     .desktop-nav a:hover,
     .mobile-nav nav a:hover {
@@ -676,6 +729,10 @@
   }
 
   @media (min-width: 40rem) {
+    .services-list li {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
+    }
     .experience-entry {
       grid-template-columns: minmax(0, 1fr) auto;
       column-gap: 2rem;

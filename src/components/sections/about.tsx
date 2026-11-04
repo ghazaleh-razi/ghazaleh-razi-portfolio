@@ -1,3 +1,5 @@
+import { angularDevelopment } from "../../content/services";
+import { Arrow } from "../ui/arrow";
 import { SectionHeading } from "../ui/section-heading";
 
 export function About() {
@@ -8,6 +10,11 @@ export function About() {
         <p className="about-intro">I&apos;m a Frontend Engineer who enjoys turning complex requirements into clear, reliable web experiences.</p>
         <p>My work is primarily centered around Angular and TypeScript, where I care as much about maintainable architecture and predictable application behavior as I do about the quality of the interface.</p>
         <p>I&apos;m particularly interested in frontend problems involving complex workflows, reusable systems, and products that need to evolve over time.</p>
+        <p>
+          <a className="text-link accent-link" href={angularDevelopment.path}>
+            Explore Angular development services <Arrow />
+          </a>
+        </p>
       </div>
     </section>
   );
