@@ -260,6 +260,17 @@ for (const [, level] of servicesVisible.matchAll(/<h([1-6])\b/g)) {
   headingLevel = Number(level);
 }
 const servicesLinks = tags(servicesVisible, "a");
+for (const [page, expectedHref] of [
+  [visible, "#top"],
+  [servicesVisible, "/"],
+]) {
+  const wordmark = tags(page, "a").find((link) => link.class === "wordmark");
+  assert.ok(
+    wordmark?.["aria-label"]?.startsWith("GR"),
+    "Logo accessible name includes its visible GR label",
+  );
+  assert.equal(wordmark.href, expectedHref, "Logo destination");
+}
 assert.equal(
   tags(visible, "a").filter((link) => link.href === servicesPath).length,
   1,

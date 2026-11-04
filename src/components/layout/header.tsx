@@ -11,7 +11,7 @@ export function Header({ homeLinks = false }: { homeLinks?: boolean }) {
   return (
     <header className="site-header">
       <div className="page-container header-inner">
-        <a className="wordmark" href={homeLinks ? "/" : "#top"} aria-label={homeLinks ? "Ghazaleh Razi — home" : "Ghazaleh Razi — back to top"}>
+        <a className="wordmark" href={homeLinks ? "/" : "#top"} aria-label={homeLinks ? "GR — Ghazaleh Razi — home" : "GR — Ghazaleh Razi — back to top"}>
           GR<span className="wordmark-dot" aria-hidden="true">.</span>
         </a>
         <nav id="desktop-navigation" className="desktop-nav" aria-label="Primary">
